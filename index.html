@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Useless.INC. Productos simples para ahorrar tiempo.">
+  <title>useless.INC | Feria ROBOTEC</title>
+  <link rel="icon" type="image/png" href="logo.png">
+
+  <style>
+    /* 1. Colores, tipografía y estilos generales */
+    :root {
+      --principal: #EBDFDF;
+      --secundario: #000370;
+      --acento: #1D7070;
+      --fondo: #72C7D6;
+      --texto: #F2FFC2;
+      --texto-oscuro: #14252A;
+      --blanco: #FFFFFF;
+      --sombra: 0 10px 28px rgba(0, 3, 112, 0.13);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Verdana, sans-serif;
+      background: var(--fondo);
+      color: var(--texto-oscuro);
+      line-height: 1.6;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .contenedor {
+      width: min(1100px, 90%);
+      margin: 0 auto;
+    }
+
+    section {
+      padding: 88px 0;
+      scroll-margin-top: 78px;
+    }
+
+    .titulo-seccion {
+      color: var(--secundario);
+      text-align: center;
+      font-size: clamp(2rem, 4vw, 2.7rem);
+      margin-bottom: 14px;
+    }
+
+    .subtitulo-seccion {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 38px;
+      color: var(--texto-oscuro);
+    }
+
+    .boton {
+      display: inline-block;
+      background: var(--acento);
+      color: var(--blanco);
+      border: 2px solid var(--acento);
+      padding: 12px 23px;
+      border-radius: 9px;
+      font-weight: bold;
+      transition: transform .2s, background .2s;
+    }
+
+    .boton:hover {
+      background: var(--secundario);
+      border-color: var(--secundario);
+      transform: translateY(-2px);
+    }
+
+    /* 2. Menú fijo y navegación */
+    .encabezado {
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--secundario);
+      box-shadow: 0 3px 14px rgba(0, 0, 0, .18);
+    }
+
+    .barra-navegacion {
+      min-height: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .marca-menu {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--texto);
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .marca-menu img {
+      width: 43px;
+      height: 43px;
+      object-fit: contain;
+      border-radius: 7px;
+      background: var(--principal);
+    }
+
+    .enlaces-menu {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      list-style: none;
+    }
+
+    .enlaces-menu a {
+      color: var(--texto);
+      font-weight: bold;
+      font-size: .95rem;
+    }
+
+    .enlaces-menu a:hover {
+      color: var(--principal);
+      text-decoration: underline;
+      text-underline-offset: 5px;
+    }
+
+    .boton-menu {
+      display: none;
+      border: 1px solid var(--texto);
+      color: var(--texto);
+      background: transparent;
+      padding: 7px 11px;
+      border-radius: 7px;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+
+    /* 3. Inicio */
+    #inicio {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding-top: 120px;
+      background: linear-gradient(135deg, var(--fondo), var(--principal));
+    }
+
+    .contenido-inicio {
+      max-width: 800px;
+    }
+
+    .logo-inicio {
+      width: 155px;
+      height: 155px;
+      object-fit: contain;
+      margin: 0 auto 22px;
+      padding: 10px;
+      background: rgba(255, 255, 255, .75);
+      border-radius: 28px;
+      box-shadow: var(--sombra);
+    }
+
+    .contenido-inicio h1 {
+      color: var(--secundario);
+      font-size: clamp(2.7rem, 8vw, 5rem);
+      line-height: 1.1;
+      margin-bottom: 15px;
+    }
+
+    .eslogan {
+      color: var(--acento);
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      font-weight: bold;
+      margin-bottom: 28px;
+    }
+
+    /* 4. Sobre la empresa */
+    #empresa {
+      background: var(--principal);
+    }
+
+    .presentacion {
+      max-width: 850px;
+      margin: 0 auto 30px;
+      text-align: center;
+      font-size: 1.08rem;
+    }
+
+    .datos-empresa {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 35px;
+    }
+
+    .dato {
+      background: var(--blanco);
+      padding: 22px;
+      border-left: 5px solid var(--acento);
+      border-radius: 10px;
+      box-shadow: var(--sombra);
+    }
+
+    .dato h3, .equipo h3 {
+      color: var(--secundario);
+      margin-bottom: 7px;
+    }
+
+    .equipo {
+      background: var(--fondo);
+      border-radius: 12px;
+      padding: 25px;
+    }
+
+    .lista-equipo {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+      list-style: none;
+    }
+
+    .lista-equipo li {
+      background: var(--blanco);
+      border-radius: 9px;
+      padding: 15px;
+      text-align: center;
+    }
+
+    /* 5. Catálogo */
+    #catalogo {
+      background: var(--fondo);
+    }
+
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 25px;
+    }
+
+    .producto {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: var(--blanco);
+      border-radius: 14px;
+      box-shadow: var(--sombra);
+      transition: transform .2s;
+    }
+
+    .producto:hover {
+      transform: translateY(-5px);
+    }
+
+    .producto img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      background: var(--principal);
+    }
+
+    .producto-contenido {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 21px;
+    }
+
+    .producto h3 {
+      color: var(--secundario);
+      font-size: 1.35rem;
+      margin-bottom: 8px;
+      text-transform: capitalize;
+    }
+
+    .producto p {
+      flex: 1;
+      margin-bottom: 17px;
+    }
+
+    .precio {
+      color: var(--acento);
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+
+    /* 6. Contacto y formulario */
+    #contacto {
+      background: var(--principal);
+    }
+
+    .contacto-contenido {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .datos-contacto, .formulario {
+      background: var(--blanco);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: var(--sombra);
+    }
+
+    .datos-contacto h3, .formulario h3 {
+      color: var(--secundario);
+      margin-bottom: 13px;
+    }
+
+    .correo {
+      color: var(--acento);
+      font-weight: bold;
+      overflow-wrap: anywhere;
+    }
+
+    .campo {
+      margin-bottom: 15px;
+    }
+
+    .campo label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    .campo input, .campo textarea {
+      width: 100%;
+      border: 1px solid #8B9A9D;
+      border-radius: 7px;
+      padding: 11px 12px;
+      font: inherit;
+      color: var(--texto-oscuro);
+      background: #fff;
+    }
+
+    .campo input:focus, .campo textarea:focus {
+      outline: 2px solid var(--acento);
+      border-color: var(--acento);
+    }
+
+    .campo textarea {
+      min-height: 125px;
+      resize: vertical;
+    }
+
+    .nota-formulario {
+      font-size: .88rem;
+      margin-top: 12px;
+      color: #405257;
+    }
+
+    /* 7. Pie de página */
+    footer {
+      padding: 22px 0;
+      text-align: center;
+      background: var(--secundario);
+      color: var(--texto);
+    }
+
+    /* 8. Ajustes para pantallas pequeñas */
+    @media (max-width: 720px) {
+      .boton-menu {
+        display: block;
+      }
+
+      .barra-navegacion {
+        min-height: 66px;
+      }
+
+      .enlaces-menu {
+        display: none;
+        position: absolute;
+        top: 66px;
+        left: 0;
+        width: 100%;
+        padding: 18px 5%;
+        background: var(--secundario);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 17px;
+      }
+
+      .enlaces-menu.activo {
+        display: flex;
+      }
+
+      section {
+        padding: 70px 0;
+        scroll-margin-top: 65px;
+      }
+
+      .datos-empresa, .productos, .contacto-contenido {
+        grid-template-columns: 1fr;
+      }
+
+      .lista-equipo {
+        grid-template-columns: 1fr;
+      }
+
+      .producto img {
+        height: 210px;
+      }
+
+      #inicio {
+        min-height: 92vh;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Menú de navegación fijo -->
+  <header class="encabezado">
+    <nav class="contenedor barra-navegacion" aria-label="Navegación principal">
+      <a class="marca-menu" href="#inicio">
+        <img src="logo.png" alt="Logo de useless.INC">
+        <span>useless.INC</span>
+      </a>
+
+      <button class="boton-menu" id="botonMenu" type="button"
+              aria-label="Abrir menú" aria-expanded="false" aria-controls="enlacesMenu">
+        ☰
+      </button>
+
+      <ul class="enlaces-menu" id="enlacesMenu">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#empresa">Sobre la empresa</a></li>
+        <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Sección 1: Inicio -->
+    <section id="inicio">
+      <div class="contenedor contenido-inicio">
+        <img class="logo-inicio" src="logo.png" alt="Logo de useless.INC">
+        <h1>useless.INC</h1>
+        <p class="eslogan">The Useless Inc., hazlo útil.</p>
+        <a class="boton" href="#catalogo">Ver catálogo</a>
+      </div>
+    </section>
+
+    <!-- Sección 2: Información de la empresa -->
+    <section id="empresa">
+      <div class="contenedor">
+        <h2 class="titulo-seccion">Sobre la empresa</h2>
+        <p class="subtitulo-seccion">Conoce nuestra empresa estudiantil para la Feria ROBOTEC de San Diego Bilingual High School.</p>
+
+        <p class="presentacion">
+          Somos <strong>useless.INC</strong>, una empresa estudiantil enfocada en crear
+          productos de uso muy simple que ayuden a ahorrar tiempo en algunas tareas.
+        </p>
+
+        <div class="datos-empresa">
+          <article class="dato">
+            <h3>Eje temático</h3>
+            <p>Construcción.</p>
+          </article>
+          <article class="dato">
+            <h3>Enfoque</h3>
+            <p>Productos de uso muy simple.</p>
+          </article>
+          <article class="dato">
+            <h3>Cliente objetivo</h3>
+            <p>Estudiantes que no quieren gastar su tiempo.</p>
+          </article>
+          <article class="dato">
+            <h3>Propuesta de valor</h3>
+            <p>Ayudar a ahorrar tiempo en algunas cosas.</p>
+          </article>
+        </div>
+
+        <div class="equipo">
+          <h3>Integrantes y roles</h3>
+          <ul class="lista-equipo">
+            <li><strong>Mathias Chaves</strong><br>Diseñador</li>
+            <li><strong>Mateo Villareal</strong><br>Constructor</li>
+            <li><strong>Sebastian Mena</strong><br>Gerente</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 3: Catálogo de productos -->
+    <section id="catalogo">
+      <div class="contenedor">
+        <h2 class="titulo-seccion">Nuestro catálogo</h2>
+        <p class="subtitulo-seccion">Conoce los productos de useless.INC.</p>
+
+        <div class="productos">
+          <article class="producto">
+            <img src="imagenes/producto4.png" alt="Basurero portátil" loading="lazy">
+            <div class="producto-contenido">
+              <h3>Basurero portátil</h3>
+              <p>Basurero que se puede llevar a cualquier lugar. Puedes usarlo para botar diferentes tipos de desechos.</p>
+              <span class="precio">₡7 000</span>
+            </div>
+          </article>
+
+          <article class="producto">
+            <img src="imagenes/Producto1.png" alt="Atrapa bichos" loading="lazy">
+            <div class="producto-contenido">
+              <h3>Atrapa bichos</h3>
+              <p>Tapón hueco que sirve para capturar bichos de cualquier tamaño y para cualquier propósito.</p>
+              <span class="precio">₡5 000</span>
+            </div>
+          </article>
+
+          <article class="producto">
+            <img src="imagenes/producto3.png" alt="Sostenedor de vasos" loading="lazy">
+            <div class="producto-contenido">
+              <h3>Sostenedor de vasos</h3>
+              <p>Dos envases que se pueden usar como basurero o portabotellas. También sirven para guardar objetos importantes, como llaves y snacks.</p>
+              <span class="precio">₡6 000</span>
+            </div>
+          </article>
+
+          <article class="producto">
+            <img src="imagenes/producto2.png" alt="Organizador de cables" loading="lazy">
+            <div class="producto-contenido">
+              <h3>Clean cables</h3>
+              <p>Tabla con hileras de tubos para introducir cables y mantenerlos ordenados.</p>
+              <span class="precio">₡7 200</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 4: Contacto -->
+    <section id="contacto">
+      <div class="contenedor">
+        <h2 class="titulo-seccion">Contacto</h2>
+        <p class="subtitulo-seccion">¿Tienes alguna consulta? Puedes escribirnos.</p>
+
+        <div class="contacto-contenido">
+          <div class="datos-contacto">
+            <h3>Comunícate con nosotros</h3>
+            <p>Correo electrónico:</p>
+            <p><a class="correo" href="mailto:useless.Inc@gmail.com">useless.Inc@gmail.com</a></p>
+          </div>
+
+          <form class="formulario" id="formularioContacto">
+            <h3>Envíanos un mensaje</h3>
+            <div class="campo">
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="campo">
+              <label for="correo">Correo electrónico</label>
+              <input type="email" id="correo" name="correo" required>
+            </div>
+            <div class="campo">
+              <label for="mensaje">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" required></textarea>
+            </div>
+            <button class="boton" type="submit">Preparar mensaje</button>
+            <p class="nota-formulario">Al enviar, se abrirá tu aplicación de correo con el mensaje preparado para useless.Inc@gmail.com.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Pie de página -->
+  <footer>
+    <div class="contenedor">
+      <p>useless.INC | Feria ROBOTEC - San Diego Bilingual High School</p>
+    </div>
+  </footer>
+
+  <script>
+    // Menú desplegable para celulares
+    const botonMenu = document.getElementById("botonMenu");
+    const enlacesMenu = document.getElementById("enlacesMenu");
+
+    botonMenu.addEventListener("click", () => {
+      const estaAbierto = enlacesMenu.classList.toggle("activo");
+      botonMenu.setAttribute("aria-expanded", estaAbierto);
+      botonMenu.setAttribute("aria-label", estaAbierto ? "Cerrar menú" : "Abrir menú");
+      botonMenu.textContent = estaAbierto ? "✕" : "☰";
+    });
+
+    // Cerrar el menú después de seleccionar una sección
+    enlacesMenu.querySelectorAll("a").forEach((enlace) => {
+      enlace.addEventListener("click", () => {
+        enlacesMenu.classList.remove("activo");
+        botonMenu.setAttribute("aria-expanded", "false");
+        botonMenu.setAttribute("aria-label", "Abrir menú");
+        botonMenu.textContent = "☰";
+      });
+    });
+
+    // Preparar un correo con los datos del formulario
+    document.getElementById("formularioContacto").addEventListener("submit", (evento) => {
+      evento.preventDefault();
+
+      const nombre = document.getElementById("nombre").value.trim();
+      const correo = document.getElementById("correo").value.trim();
+      const mensaje = document.getElementById("mensaje").value.trim();
+
+      const asunto = encodeURIComponent("Mensaje desde el sitio web de useless.INC");
+      const cuerpo = encodeURIComponent(
+        `Nombre: ${nombre}\nCorreo: ${correo}\n\nMensaje:\n${mensaje}`
+      );
+
+      window.location.href =
+        `mailto:useless.Inc@gmail.com?subject=${asunto}&body=${cuerpo}`;
+    });
+  </script>
+</body>
+</html>
